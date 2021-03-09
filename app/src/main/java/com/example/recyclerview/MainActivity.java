@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private final LinkedList<String> mWordList = new LinkedList<>();
 
-    public RecyclerView mRecyclerView;
-    public WordListAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+    private WordListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +51,13 @@ public class MainActivity extends AppCompatActivity {
             mWordList.addLast("Word " + i);
         }
 
+        // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);
-        mAdapter = new WordListAdapter(mWordList, this);
+        // Create an adapter and supply the data to be displayed.
+        mAdapter = new WordListAdapter(this, mWordList);
+        // Connect the adapter with the RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
+        // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
